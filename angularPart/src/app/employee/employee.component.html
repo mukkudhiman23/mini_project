@@ -1,0 +1,79 @@
+
+<div class="row">
+    
+    <div class="col-12 col-md-5">
+       <div class="card">
+        <form #employeeForm="ngForm" (ngSubmit)="onSubmit(employeeForm)">
+            <input type="hidden" name="_id" [(ngModel)]="employeeService.selectedEmployee._id">
+            <div class="form-group">
+              <label>Employee_Id</label>
+              <input type="number" class="form-control" [(ngModel)]="employeeService.selectedEmployee.id_emp" placeholder="Enter Id">
+              </div>
+            <div class="form-group">
+                <label>Name</label>
+                <input type="text" class="form-control" [(ngModel)]="employeeService.selectedEmployee.name" placeholder="Enter Your Name">
+                </div>
+                <div class="form-group">
+                    <label>Trade</label>
+                    <input type="text" class="form-control" [(ngModel)]="employeeService.selectedEmployee.trade" placeholder="Enter Your Trade">
+                    </div>
+                    <div class="form-group">
+                        <label>Address</label>
+                        <input type="text" class="form-control" [(ngModel)]="employeeService.selectedEmployee.address" placeholder="Enter Your Permanent Address">
+                        </div>
+                        <div class="form-group">
+                            <label>Aadhar_No</label>
+                            <input type="number" class="form-control" [(ngModel)]="employeeService.selectedEmployee.id_aadhar" placeholder="Enter Aadhar card  no">
+                            </div>
+                            <div class="form-group">
+                                <label>Date_Of_Birth</label>
+                                <input type="date" class="form-control" [(ngModel)]="employeeService.selectedEmployee.date">
+                                </div>
+                                <div class="form-group">
+                                    <label>Gender</label>
+                                    <input type="text" class="form-control" [(ngModel)]="employeeService.selectedEmployee.gender">
+                                    </div>
+                                    <button class="btn btn-info right" type="submit">Submit</button>
+                                    
+                                    
+                                
+          </form>
+       </div>
+
+    </div>
+    <div class="col-sm-7">
+        <table class="responsive-table highlight">
+            <thead>
+              <tr>
+                <th>Employee_Id</th>
+                <th>Aadhar_No</th>
+                <th>Name</th>
+                <th>Trade</th>   
+                <th>Gender</th>    
+                <th>Address</th>    
+                <th>Date_Of_Birth</th>      
+              </tr>
+            </thead>
+            <tr *ngFor="let emp of employeeService.employees">
+              <td>{{emp.id_emp}</td>
+              <td>{{emp.id_aadhar}}</td>
+              <td>{{emp.name}}</td>
+              <td>{{emp.trade}}</td>
+              
+              <td>{{emp.gender}}</td>
+              
+              <td>{{emp.address}}</td>
+              <td>{{emp.dob}}</td>
+             
+              <td>
+                  <a class="action-btn" (click)="onEdit(emp)">
+                    <button class="btn btn-info">edit</button>
+                  </a>
+                  <a class="action-btn" (click)="onDelete(emp._id,employeeForm)">
+                    <button class="btn btn-info">delete</button>
+                  </a>
+                </td>
+            </tr>
+          </table>
+    </div>
+</div>
