@@ -1,0 +1,68 @@
+<html>
+  <head>
+    <link />
+
+    <!-- Latest compiled and minified CSS -->
+    <link
+      rel="stylesheet"
+      href="//maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    />
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <style>
+      body{
+        background-image: url('https://wallpapercave.com/wp/PPMnOZM.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+      .card {
+        margin-top: 200px;
+        height: 300px;
+      }
+      label,h3 {
+        color: blanchedalmond;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="row">
+      <div class="col-sm-3"></div>
+      <div class="col-sm-6 card bg-dark">
+      <h3>API Task</h3>
+          <label class="mt-4">Select City:</labelclass="mt-4">
+          <select id="demo" class="form-control ">
+            <option value="unassigned">Select City</option>
+            <% for (var j = 0; j < name.length; j++){ %><option
+              value="<%= name[j].city_name %>"
+            >
+              <%= name[j].city_name %><% } %>
+            </option>
+          </select><br>
+       
+        <h4 id="data"></h4>
+      </div>
+      <div class="col-sm-3"></div>
+    </div>
+  </body>
+</html>
+<script>
+  $("#demo").change(function() {
+    var firstDropVal = $("#demo").val();
+
+    let api_url = `https://api.mapbox.com/geocoding/v5/mapbox.places/${firstDropVal}.json?access_token=pk.eyJ1IjoibWVoYWtkaGltYW4iLCJhIjoiY2s2bjZjcGsyMDdkcTNucWI3bmIzdGZhMiJ9.pwXQ7omkxcw39x2pa3fJVQ`;
+    $.ajax({
+      url: api_url,
+
+      dataType: "json",
+      success: function(result) {
+        var content1 = result.features[1].geometry.coordinates;
+        var content = result.features[1].place_name;
+
+        let main="place name: " + content + " and coordinates are:" + content1;
+        $('#data').text(main);
+      }
+    });
+  });
+</script>

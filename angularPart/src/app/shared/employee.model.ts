@@ -1,11 +1,10 @@
 export class Employee {
-    _id:String;
-    id_emp:Number;
-    name:String;
-    trade:String;
-    id_aadhar:Number;
-    gender:String;
-    address:String;
-    dob:Date;
-    
+  _id: string;
+  id_emp: number;
+  name: string;
+  trade: string;
+  id_aadhar: number;
+  gender: string;
+  address: string;
+  dob: Date;
 }
